@@ -1,8 +1,5 @@
 # VoteSystem - ICPNETWORKS
 
-### Tópico oficial na L2jBrasil:
-http://www.l2jbrasil.com/index.php?t=77510
-
 ## Como funciona este VoteSystem?
 
 Grosseiramente falando, este VoteSystem pelo sistema API checa dentro do site de TOP se o Player votou em seu servidor, caso o player não tenha votado o site de TOP avisa ao VoteSystem que aquele Player ainda não votou, então o VoteSystem não deixa que o Player receba a premiação.
@@ -21,15 +18,3 @@ Este VoteSystem foi desenvolvido com a finalidade de ajudar os SERVIDOSRES de L2
 - http://www.gamesites200.com
 - http://www.topmmo.com.br
 - http://www.top200games.com.br
-
-
-### VoteSystem developed by:        
-    - Ivan Pires (ICPNetworks)        
-### And styled by:            
-	- Hugo Felipe (ICPNetworks)       
-
-Email: contato@icpnetworks.com.br   
-Website: http://www.icpnetworks.com.br 
-
-
-Distribuido sob a licença Apache 2.0
