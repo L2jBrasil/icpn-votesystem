@@ -147,12 +147,19 @@ echo"<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px;
 
 
 if($row["id"] == '2'){
-$link = "http://top.l2jbrasil.com";@$site = fopen($link,"r");
-if($site){
+$link = "http://top.l2jbrasil.com/votesystem/";
+@$site = fopen($link,"r");
+$xml2 = null;
+if(checkOnline($link)){
 @header('Content-Type: text/html; charset=utf-8');
-$xml2 = @simplexml_load_file("http://top.l2jbrasil.com/votesystem/?ip=$_SERVER[REMOTE_ADDR]&username=$row[top_id]");
-foreach($xml2->vote as $vote){
-$data_modificada2 = date("Y-m-d H:i:s",strtotime("$vote->date + $horas_voto hours"));
+
+$xml_string = acessoSimples("http://top.l2jbrasil.com/votesystem/?ip=$_SERVER[REMOTE_ADDR]&username=$row[top_id]");
+$xml2 = @simplexml_load_string($xml_string);
+//var_dump($xml2,count($xml2));exit;
+if(count($xml2)){
+	foreach($xml2->vote as $vote){
+		$data_modificada2 = date("Y-m-d H:i:s",strtotime("$vote->date + $horas_voto hours"));
+	}
 }
 $data_hoje = date('Y-m-d H:i:s');
 $data1 = strtotime($data_modificada2);
