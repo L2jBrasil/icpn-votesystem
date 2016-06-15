@@ -230,6 +230,7 @@ if(isset($_POST["install"])){
 		}
 		$conteudo = str_replace("sitex", "$site", (str_replace("name_dbx", "$_POST[name_db]", (str_replace("pass_dbx", "$_POST[pass_db]", (str_replace("user_dbx", "$_POST[user_db]", (str_replace("ipx", "$ip", (stripslashes($_POST["pagina"])))))))))));
 		$html = "<?php\n";
+		$html .= "include ('util.php');";
 		$html .= "$conteudo";
 		$html .= "\n?>";
 		$pag_config = fopen("config/connect_config.php", "w");
