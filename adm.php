@@ -220,8 +220,8 @@ function edit_config(){
 <input type='text' id='11' <?php echo"$style1"; echo" value='$b05'"; ?>>
 </div>
 <div style="float:left; width:130px; height:120px; text-align:center;">
-<a href="http://www.lineagetop200.com" target="_blank" title="<?php echo"$language_37"; ?>">Lineage Top 200<br>
-<img src="http://www.lineagetop200.com/images/button.png" width="87" height="47" border="0"></a><br>
+<a href="http://www.lineagetop200.com" target="_blank" title="<?php echo"$language_37"; ?>">LineageTop200<br>
+<img src="http://www.lineagetop200.com/vote.png" width="87" height="47" border="0"></a><br>
 <input type='text' id='12' <?php echo"$style1"; echo" value='$b06'"; ?>>
 </div>
 <div style="float:left; width:130px; height:120px; text-align:center;">

@@ -106,7 +106,7 @@ if(isset($_POST["install"])){
 		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('3', 'GameSites200', 'sem_id', '0')") or die(mysql_error());
 		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('4', 'Top Lineage 2', 'sem_id', '0')") or die(mysql_error());
 		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('5', 'GTOP100', 'sem_id', '0')") or die(mysql_error());
-		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('6', 'Lineage Top 200', 'sem_id', '0')") or die(mysql_error());
+		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('6', 'LineageTop200', 'sem_id', '0')") or die(mysql_error());
 		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('7', 'MMORPG', 'sem_id', '0')") or die(mysql_error());
 		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('8', 'HOPZONE', 'sem_id', '0')") or die(mysql_error());
 		mysql_query("INSERT INTO `icp_votesystem_tops` VALUES ('9', 'TOPGS200', 'sem_id', '0')") or die(mysql_error());
@@ -308,8 +308,8 @@ function instalar(){
 <input type='text' id='11' <?php echo"$style1"; if(isset($_POST["b5"])){ echo" value='$_POST[b5]'"; } ?>>
 </div>
 <div style="float:left; width:130px; height:120px; text-align:center;">
-<a href="http://lineagetop200.com/" target="_blank" title="<?php echo"$language_37"; ?>">Lineage Top 200<br>
-<img src="http://www.lineagetop200.com/images/button.png" width="87" height="47" border="0"></a><br>
+<a href="http://lineagetop200.com/" target="_blank" title="<?php echo"$language_37"; ?>">LineageTop200<br>
+<img src="http://www.lineagetop200.com/vote.png" width="87" height="47" border="0"></a><br>
 <input type='text' id='12' <?php echo"$style1"; if(isset($_POST["b6"])){ echo" value='$_POST[b6]'"; } ?>>
 </div>
 <div style="float:left; width:130px; height:120px; text-align:center;">

@@ -663,10 +663,10 @@ if($site){
 				atualizaContador6();
 		</script>
 		<?php
-		echo"<div style='background:url(http://www.lineagetop200.com/button.php?u=$row[top_id]); background-repeat: no-repeat; background-size: 87px 47px; width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'><div style='width:89px; *width:87px; _width:87px; height:49px; *height:47px; _height:47px; font-size:10px; font-family:Arial; background: rgba(0,0,0,0.6); text-shadow:1px 1px #000; font-weight:bold;'>$language_05<br><font size='3'><span id='contador6'></span></font><br>$language_06</div></div>";
+		echo"<div style='background:url(http://www.lineagetop200.com/vote.png); background-repeat: no-repeat; background-size: 87px 47px; width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'><div style='width:89px; *width:87px; _width:87px; height:49px; *height:47px; _height:47px; font-size:10px; font-family:Arial; background: rgba(0,0,0,0.6); text-shadow:1px 1px #000; font-weight:bold;'>$language_05<br><font size='3'><span id='contador6'></span></font><br>$language_06</div></div>";
 	}else{
 		$id6 = '0';
-		echo"<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'><a href='http://www.lineagetop200.com/index.php?a=in&u=$row[top_id]' target='_blank'><img src='http://www.lineagetop200.com/button.php?u=$row[top_id]' title='Lineage 2 Servers' border='0' width='87' height='47' onClick=SetCookie('click_id6','click');></a></div>";
+		echo"<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'><a href='http://www.lineagetop200.com/server/$row[top_id]' target='_blank'><img src='http://www.lineagetop200.com/vote.png' title='Lineage 2 Servers' border='0' width='87' height='47' onClick=SetCookie('click_id6','click');></a></div>";
 	}
 }else{
 	$id6 = '1';
