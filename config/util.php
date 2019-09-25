@@ -1,28 +1,17 @@
 <?php
 function getUserIP()
 {
-    $client  = @$_SERVER['HTTP_CLIENT_IP'];
-    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-    $remote  = $_SERVER['REMOTE_ADDR'];
+	
+	//Check to see if the CF-Connecting-IP header exists.
+	if(isset($_SERVER["HTTP_CF_CONNECTING_IP"])){
+		//If it does, assume that PHP app is behind Cloudflare.
+		$ipAddress = $_SERVER["HTTP_CF_CONNECTING_IP"];
+	} else{
+		//Otherwise, use REMOTE_ADDR.
+		$ipAddress = $_SERVER['REMOTE_ADDR'];
+	}
 
-    if(filter_var($client, FILTER_VALIDATE_IP))
-    {
-        $ip = $client;
-    }
-    elseif(filter_var($forward, FILTER_VALIDATE_IP))
-    {
-        $ip = $forward;
-    }
-    else
-    {
-        $ip = $remote;
-    }
-    //Votos feitos no localhost não serão capturados
-    //Apenas IP reais serão possíveis ser analizados.
-    if(in_array($ip, array('::1','127.0.0.1'),true)){
-        $ip = '191.240.225.129'; 
-    }
-    return $ip;
+	return $ipAddress;
 }
 
 
@@ -45,6 +34,7 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
 function checkOnline($domain) {
    $ch = curl_init($domain);
    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,10);
+   curl_setopt($ch,CURLOPT_DNS_SERVERS,"1.1.1.1");	
    curl_setopt($ch,CURLOPT_HEADER,true);
    curl_setopt($ch,CURLOPT_NOBODY,false);
    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
