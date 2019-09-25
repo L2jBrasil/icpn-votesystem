@@ -28,6 +28,4 @@ Este VoteSystem foi desenvolvido com a finalidade de ajudar os SERVIDOSRES de L2
 ###  And styled by:             
 - Hugo Felipe (ICPNetworks)
 
-
-Email: contato@icpnetworks.com.br    
-Website: http://www.icpnetworks.com.br 
+Repositório mantido pela l2jbrasil
