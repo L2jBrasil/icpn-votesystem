@@ -1,6 +1,6 @@
 # VoteSystem - ICPNETWORKS
 
-Tópico oficial na L2jBrasil: http://www.l2jbrasil.com/index.php?t=77510
+Tópico oficial na L2jBrasil: https://www.l2jbrasil.com/t/77510
 
 ## Como funciona este VoteSystem?
 
