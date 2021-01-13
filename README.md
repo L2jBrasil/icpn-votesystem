@@ -1,6 +1,6 @@
 # VoteSystem - ICPNETWORKS
 
-Tópico oficial na L2jBrasil: https://www.l2jbrasil.com/t/77510
+Tópico oficial na L2jBrasil: https://www.l2jbrasil.com/t/138830
 
 ## Como funciona este VoteSystem?
 
@@ -28,4 +28,5 @@ Este VoteSystem foi desenvolvido com a finalidade de ajudar os SERVIDOSRES de L2
 ###  And styled by:             
 - Hugo Felipe (ICPNetworks)
 
-Repositório mantido pela l2jbrasil
+Projeto e divulgação https://www.icpfree.com.br     
+Repositório mantido pela https://l2jbrasil.com
