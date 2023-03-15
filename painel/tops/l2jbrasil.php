@@ -9,13 +9,13 @@
 //       Brazillian Developer / WebSite: http://www.icpfree.com.br       \\
 //                 Email & Skype: ivan1507@gmail.com.br                  \\
 //=======================================================================\\
+$player_id = md5("ipc".$_SESSION["UsuarioLogin"].$row->top_id);
 if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url)), 80 , $errno , $errstr , 30)){
-	@header('Content-Type: text/html; charset=utf-8');
-	$xml = @simplexml_load_string(acessoSimples("http://top.l2jbrasil.com/votesystem/?ip=".get_client_ip()."&username=".$row->top_id));
+	@header('Content-Type: text/html; charset=utf-8')
+	$xml = @simplexml_load_string(acessoSimples("https://top.l2jbrasil.com/votesystem/?hours=12&player_id={$player_id}&username={$row->top_id}"));
 	if(count($xml)){
-		foreach($xml->vote as $vote){
-			$data_modificada = date("Y-m-d H:i:s",strtotime($vote->date." + 12 hours"));
-		}
+		$lastVote = end($xml->vote);
+		$data_modificada = date("Y-m-d H:i:s",strtotime($lastVote->date." + 12 hours"));
 	}
 	$xml = null;
 	if(strtotime($data_modificada) >= strtotime(date('Y-m-d H:i:s'))){
@@ -35,8 +35,9 @@ if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url))
 	}else{
 		?>
 		<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'>
-			<a href='http://top.l2jbrasil.com/index.php?a=in&u=<?php echo $row->top_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='Top L2JBrasil de Servidores de Lineage2' border='0' width='87' height='47'></a>
+			<a href='https://top.l2jbrasil.com/index.php?a=in&u=<?php echo $row->top_id; ?>&player_id=<?php echo $player_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='Top L2JBrasil de Servidores de Lineage2' border='0' width='87' height='47'></a>
 		</div>
+		<p>Use apenas o link acima que contém o seu "player_id": <b><?php echo $player_id; ?></b></p>
 		<?php
 	}
 }else{
