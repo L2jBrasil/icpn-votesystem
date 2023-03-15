@@ -11,7 +11,7 @@
 //=======================================================================\\
 $player_id = md5("ipc".$_SESSION["UsuarioLogin"].$row->top_id);
 if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url)), 80 , $errno , $errstr , 30)){
-	@header('Content-Type: text/html; charset=utf-8')
+	@header('Content-Type: text/html; charset=utf-8');
 	$xml = @simplexml_load_string(acessoSimples("https://top.l2jbrasil.com/votesystem/?hours=12&player_id={$player_id}&username={$row->top_id}"));
 	if(count($xml)){
 		$lastVote = end($xml->vote);
