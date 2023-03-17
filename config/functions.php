@@ -84,8 +84,10 @@ function acessoSimples($url, &$info = null, $get= array() , $post=array(), $time
 	curl_setopt_array($ch, array(
 		CURLOPT_CONNECTTIMEOUT => $timeout ,
 		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_SSL_VERIFYPEER=> false,
 		CURLOPT_URL => $url,
-		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] 
+		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] . " ICPNetwork Votesystem Legacy 2.6"
 	));
 	$response = curl_exec($ch);
 	// Then, after your curl_exec call:
@@ -105,7 +107,7 @@ function instalar($db_ip, $db_user, $db_pass, $db_name, $db_data, $l2jruss, $adm
 	$db = strtolower($db_data) == "l2j" ? true : false;
 	$adms = null;
 	$insert_tops = array(
-		array(1, 'L2jBrasil', 'http://top.l2jbrasil.com', 'l2jbrasil.png', 'l2jbrasil.php', 'sem_id', 'sem_token', 0, 0),
+		array(1, 'L2jBrasil', 'https://top.l2jbrasil.com', 'l2jbrasil.png', 'l2jbrasil.php', 'sem_id', 'sem_token', 0, 0),
 		array(2, 'Private Server', 'https://www.private-server.ws', 'private_server_ws.jpg', 'privateserverws.php', 'sem_id', 'sem_token', 0, 0),
 		array(3, 'Gaming Top 100', 'http://www.gamingtop100.net', 'gamingtop100.gif', 'gamingtop100.php', 'sem_id', 'sem_token', 0, 0),
 		array(4, 'Games Top 200', 'https://www.gamestop200.com', 'gamestop200.jpg', 'gamestop200.php', 'sem_id', 'sem_token', 0, 0),
