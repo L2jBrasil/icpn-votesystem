@@ -62,11 +62,7 @@ if ($can_vote):
 		<?php
 else:
 	$hoursToVoteAgain = 12;
-	if (isset($json['vote'])) {
-		$hoursToVoteAgain = $hoursToVoteAgain - intval($last_vote['hours_since_vote']);
-	}
 	
-
 	//Legacy Code
 	$data_modificada = $data_modificada = date("Y-m-d H:i:s",strtotime($last_vote['date']." + {$hoursToVoteAgain} hours"));
 	$data_voto = explode("-", substr(str_replace(" ", "", $data_modificada), 0, 10));
