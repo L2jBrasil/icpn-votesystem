@@ -84,10 +84,8 @@ function acessoSimples($url, &$info = null, $get= array() , $post=array(), $time
 	curl_setopt_array($ch, array(
 		CURLOPT_CONNECTTIMEOUT => $timeout ,
 		CURLOPT_RETURNTRANSFER => 1,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_SSL_VERIFYPEER=> false,
 		CURLOPT_URL => $url,
-		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] . " ICPNetwork Votesystem Legacy 2.6"
+		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] 
 	));
 	$response = curl_exec($ch);
 	// Then, after your curl_exec call:
@@ -107,8 +105,8 @@ function instalar($db_ip, $db_user, $db_pass, $db_name, $db_data, $l2jruss, $adm
 	$db = strtolower($db_data) == "l2j" ? true : false;
 	$adms = null;
 	$insert_tops = array(
-		array(1, 'L2jBrasil', 'https://top.l2jbrasil.com', 'l2jbrasil.png', 'l2jbrasil.php', 'sem_id', 'sem_token', 0, 0),
-		array(2, 'Private Server', 'https://www.private-server.ws', 'private_server_ws.jpg', 'privateserverws.php', 'sem_id', 'sem_token', 0, 0),
+		array(1, 'L2jBrasil', 'http://top.l2jbrasil.com', 'l2jbrasil.png', 'l2jbrasil.php', 'sem_id', 'sem_token', 0, 0),
+		array(2, '4TOP MMO', 'https://top.4teambr.com', '4topmmo.png', '4topmmo.php', 'sem_id', 'sem_token', 0, 0),
 		array(3, 'Gaming Top 100', 'http://www.gamingtop100.net', 'gamingtop100.gif', 'gamingtop100.php', 'sem_id', 'sem_token', 0, 0),
 		array(4, 'Games Top 200', 'https://www.gamestop200.com', 'gamestop200.jpg', 'gamestop200.php', 'sem_id', 'sem_token', 0, 0),
 		array(5, 'GTOP100', 'http://www.gtop100.com', 'gtop100.jpg', 'gtop100.php', 'sem_id', 'sem_token', 0, 0),
@@ -119,7 +117,7 @@ function instalar($db_ip, $db_user, $db_pass, $db_name, $db_data, $l2jruss, $adm
 		array(10, 'Top 100 Arena', 'http://www.top100arena.com', 'top100arena.jpg', 'top100arena.php', 'sem_id', 'sem_token', 0, 0),
 		array(11, 'L2 Network', 'http://www.l2network.eu', 'l2network.png', 'l2network.php', 'sem_id', 'sem_token', 0, 0),
 		array(12, 'L2Top.co', 'https://l2top.co', 'l2top.co.png', 'l2top.co.php', 'sem_id', 'sem_token', 0, 0),
-		array(13, 'TopG', 'https://topg.org', 'topg.gif', 'topg.php', 'sem_id', 'sem_token', 0, 0),
+		array(13, 'Private Server', 'https://www.private-server.ws', 'private_server_ws.jpg', 'privateserverws.php', 'sem_id', 'sem_token', 0, 0),
 		array(14, 'GameBytes', 'https://www.gamebytes.net', 'gamebytes.png', 'gamebytes.php', 'sem_id', 'sem_token', 0, 0),
 		array(15, 'L2 Servers', 'https://www.l2servers.com', 'l2servers.png', 'l2servers.php', 'sem_id', 'sem_token', 0, 0),
 		array(16, 'L2 Votes', 'https://www.l2votes.com', 'l2votes.jpg', 'l2votes.php', 'sem_id', 'sem_token', 0, 0)
