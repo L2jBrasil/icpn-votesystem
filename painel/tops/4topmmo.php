@@ -12,15 +12,15 @@
 if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url)), 80 , $errno , $errstr , 30)){
 	@header('Content-Type: text/html; charset=utf-8');
 	$pagina = @file_get_contents("https://top.4teambr.com/index.php?a=in&u=".$row->top_id."&ipc=".get_client_ip());
-	if(trim($pagina) == "0" && !isset($_COOKIE["top.4teambr.com"])){
+	if($pagina[0] == 1 && !isset($_COOKIE["4topmmo"])){
 		?>
 		<script language="javascript">
-			SetCookie('top.4teambr.com');
+			SetCookie('4topmmo');
 		</script>
 		<?php
 	}
-	if(isset($_COOKIE["top.4teambr.com"])){
-		$data_modificada = pega_cookie($_COOKIE["top.4teambr.com"]);
+	if(isset($_COOKIE["4topmmo"])){
+		$data_modificada = pega_cookie($_COOKIE["4topmmo"]);
 	}else{
 		$data_modificada = '0000-00-00 00:00:00';
 	}
@@ -41,7 +41,7 @@ if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url))
 	}else{
 		?>
 		<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'>
-			<a href='https://top.4teambr.com/index.php?a=in&u=<?php echo $row->top_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='4TOP MMO Private Servers' border='0' width='87' height='47' onClick="javascript:SetCookie('top.4teambr.com');"></a>
+			<a href='https://top.4teambr.com/index.php?a=in&u=<?php echo $row->top_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='4TOP Private Servers' border='0' width='87' height='47' onClick="javascript:SetCookie('4topmmo');"></a>
 		</div>
 		<?php
 	}
