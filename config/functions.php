@@ -55,11 +55,13 @@ function info_table($tabela,$coluna){
 }
 
 function get_client_ip() {
+    // Prefixo IPv4-mapped IPv6
     $v4mapped_prefix_hex = '00000000000000000000ffff';
     $v4mapped_prefix_bin = hex2bin($v4mapped_prefix_hex);
+    
     $ipaddress = '';
-
-    // Check various HTTP headers to get the client's IP address
+    
+    // Tentar obter o endereço IP do cliente de várias fontes
     if (isset($_SERVER['HTTP_CLIENT_IP']))
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
     else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
@@ -74,27 +76,18 @@ function get_client_ip() {
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
         $ipaddress = 'UNKNOWN';
-
-    // Check if the IP address is an IPv6 address
+    
+    // Verificar se o endereço IP é um endereço IPv6
     if (filter_var($ipaddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
-        // Additional handling for IPv6 if needed
-    } else {
-        // Check if the IP address is in a private range indicating CGNAT
-        $private_ranges = array(
-            array('10.0.0.0', '10.255.255.255'),
-            array('172.16.0.0', '172.31.255.255'),
-            array('192.168.0.0', '192.168.255.255')
-        );
-
-        $ip_decimal = ip2long($ipaddress);
-
-        foreach ($private_ranges as $range) {
-            $start = ip2long($range[0]);
-            $end = ip2long($range[1]);
-            if ($ip_decimal >= $start && $ip_decimal <= $end) {
-                // IP is in a private range, indicating CGNAT
-                break;
-         }
+        $addr_bin = inet_pton($ipaddress);
+        
+        // Remover o prefixo IPv4-mapped, se presente
+        if (substr($addr_bin, 0, strlen($v4mapped_prefix_bin)) == $v4mapped_prefix_bin) {
+            $addr_bin = substr($addr_bin, strlen($v4mapped_prefix_bin));
+        }
+        
+        // Converter de binário para formato de apresentação
+        return inet_ntop($addr_bin);
     }
 }
 
