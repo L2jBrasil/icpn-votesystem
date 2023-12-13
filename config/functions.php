@@ -93,7 +93,6 @@ function get_client_ip() {
             $end = ip2long($range[1]);
             if ($ip_decimal >= $start && $ip_decimal <= $end) {
                 // IP is in a private range, indicating CGNAT
-                echo "CGNAT Address";
                 break;
          }
     }
