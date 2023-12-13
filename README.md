@@ -14,13 +14,13 @@ Este VoteSystem foi desenvolvido com a finalidade de ajudar os SERVIDOSRES de L2
 
 ## Top Sites Suportados:
 
-- https://top.4teambr.com/
 - http://top.l2jbrasil.com
 - http://www.toplineage2.com
 - http://www.topservers200.com
 - http://www.gamesites200.com
 - http://www.topmmo.com.br
 - http://www.top200games.com.br
+- https://top.4teambr.com/
 
 
 ### VoteSystem developed by:        
