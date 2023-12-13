@@ -11,13 +11,19 @@
 //=======================================================================\\
 if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url)), 80 , $errno , $errstr , 30)){
 	@header('Content-Type: text/html; charset=utf-8');
-	$xml = @simplexml_load_string(acessoSimples("https://top.4teambr.com/index.php?a=stats&u=".$row->top_id));
-	if(count($xml)){
-		foreach($xml->vote as $vote){
-			$data_modificada = date("Y-m-d H:i:s",strtotime($vote->date." + 12 hours"));
-		}
+	$pagina = @file_get_contents("https://top.4teambr.com/index.php?a=in&u=".$row->top_id."&ipc=".get_client_ip());
+	if(trim($pagina) == "0" && !isset($_COOKIE["top.4teambr.com"])){
+		?>
+		<script language="javascript">
+			SetCookie('top.4teambr.com');
+		</script>
+		<?php
 	}
-	$xml = null;
+	if(isset($_COOKIE["top.4teambr.com"])){
+		$data_modificada = pega_cookie($_COOKIE["top.4teambr.com"]);
+	}else{
+		$data_modificada = '0000-00-00 00:00:00';
+	}
 	if(strtotime($data_modificada) >= strtotime(date('Y-m-d H:i:s'))){
 		$data_voto = explode("-", substr(str_replace(" ", "", $data_modificada), 0, 10));
 		$hora_voto = explode(":", substr(str_replace(" ", "", $data_modificada), 10, 19));
@@ -35,7 +41,7 @@ if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url))
 	}else{
 		?>
 		<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'>
-			<a href='https://top.4teambr.com/index.php?a=in&u=<?php echo $row->top_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='4TOP MMO Private Servers' border='0' width='87' height='47'></a>
+			<a href='https://top.4teambr.com/index.php?a=in&u=<?php echo $row->top_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='4TOP MMO Private Servers' border='0' width='87' height='47' onClick="javascript:SetCookie('top.4teambr.com');"></a>
 		</div>
 		<?php
 	}
