@@ -9,20 +9,67 @@
 //       Brazillian Developer / WebSite: http://www.icpfree.com.br       \\
 //                 Email & Skype: ivan1507@gmail.com.br                  \\
 //=======================================================================\\
-if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url)), 80 , $errno , $errstr , 30)){
-	@header('Content-Type: text/html; charset=utf-8');
-	$xml = @simplexml_load_string(acessoSimples("http://top.l2jbrasil.com/votesystem/?ip=".get_client_ip()."&username=".$row->top_id));
-	if(count($xml)){
-		foreach($xml->vote as $vote){
-			$data_modificada = date("Y-m-d H:i:s",strtotime($vote->date." + 12 hours"));
-		}
-	}
-	$xml = null;
-	if(strtotime($data_modificada) >= strtotime(date('Y-m-d H:i:s'))){
-		$data_voto = explode("-", substr(str_replace(" ", "", $data_modificada), 0, 10));
-		$hora_voto = explode(":", substr(str_replace(" ", "", $data_modificada), 10, 19));
-		$tops_voted = array_replace($tops_voted, array($i => array(1, $data_modificada)));
-		?>
+$player_id = md5("ipc".$_SESSION["UsuarioLogin"].$row->top_id);
+$topL2jbrURL = "https://top.l2jbrasil.com/votesystem/?hours=12&player_id={$player_id}&username={$row->top_id}&type=json";
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $topL2jbrURL);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_USERAGENT, 'curl/7.68.0 ICPNetwork/2.6');
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+$response = curl_exec($ch);
+$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+$can_vote = false;
+$tops_voted = array_replace($tops_voted, array($i => array(1, '0000-00-00 00:00:00')));
+
+if ($response === false) {
+    $can_vote = true;
+} else {
+    
+    if ($http_status != 200) {
+        $can_vote = true;
+    } else {
+        $json = json_decode($response, true);
+
+        if ($json != null) {
+            if (!isset($json['vote'])) {
+                $can_vote = true;
+            } else {
+                $votes = $json['vote'];
+
+                // check the status of the last vote
+                $last_vote = end($votes);
+                if (isset($last_vote['status']) && $last_vote['status'] == '1' && intval($last_vote['hours_since_vote']) < 12) {
+                    $can_vote = false;
+                } else {
+                    $can_vote = true;
+                }
+            }
+        }
+    }
+}
+
+// use the value of can_vote as needed
+if ($can_vote):
+	?>
+		<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'>
+			<a href='https://top.l2jbrasil.com/index.php?a=in&u=<?php echo $row->top_id; ?>&player_id=<?php echo $player_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='Top L2JBrasil de Servidores de Lineage2' border='0' width='87' height='47'></a>
+		</div>
+		<?php
+else:
+	$hoursToVoteAgain = 12;
+	
+	//Legacy Code
+	$data_modificada = $data_modificada = date("Y-m-d H:i:s",strtotime($last_vote['date']." + {$hoursToVoteAgain} hours"));
+	$data_voto = explode("-", substr(str_replace(" ", "", $data_modificada), 0, 10));
+	$hora_voto = explode(":", substr(str_replace(" ", "", $data_modificada), 10, 19));
+	$tops_voted = array_replace($tops_voted, array($i => array(1, $data_modificada)));
+
+	?>
 		<script language="javascript">
 			atualizaContador(<?php echo $row->id; ?>,<?php echo $data_voto[0]; ?>,<?php echo $data_voto[1]; ?>,<?php echo $data_voto[2]; ?>,<?php echo $hora_voto[0]; ?>,<?php echo $hora_voto[1]; ?>,<?php echo $hora_voto[2]; ?>);
 		</script>
@@ -32,14 +79,4 @@ if(@fsockopen(str_replace("https://","",str_replace("http://","",$row->top_url))
 			</div>
 		</div>
 		<?php
-	}else{
-		?>
-		<div style='width:87px; height:47px; border:1px solid #999; margin-top:5px; margin-left:5px; float:left;'>
-			<a href='http://top.l2jbrasil.com/index.php?a=in&u=<?php echo $row->top_id; ?>' target='_blank'><img src='images/buttons/<?php echo $row->top_img; ?>' title='Top L2JBrasil de Servidores de Lineage2' border='0' width='87' height='47'></a>
-		</div>
-		<?php
-	}
-}else{
-	$tops_voted = array_replace($tops_voted, array($i => array(1, '0000-00-00 00:00:00')));
-}
-?>
+endif;
