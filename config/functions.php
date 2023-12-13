@@ -85,7 +85,7 @@ function acessoSimples($url, &$info = null, $get= array() , $post=array(), $time
 		CURLOPT_CONNECTTIMEOUT => $timeout ,
 		CURLOPT_RETURNTRANSFER => 1,
 		CURLOPT_URL => $url,
-		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] 
+		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] . " ICPNetwork Votesystem Legacy 2.6"
 	));
 	$response = curl_exec($ch);
 	// Then, after your curl_exec call:
