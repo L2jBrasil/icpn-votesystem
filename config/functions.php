@@ -9,7 +9,6 @@
 //       Brazillian Developer / WebSite: http://www.icpfree.com.br       \\
 //                 Email & Skype: ivan1507@gmail.com.br                  \\
 //=======================================================================\\
-if(file_exists("config/connect_config.php"))
 $db = strtolower($db_data) == "l2j" ? true : false;
 
 function resposta($msg){
