@@ -54,10 +54,14 @@ function info_table($tabela,$coluna){
 	return null;
 }
 
-function get_client_ip(){
-	$v4mapped_prefix_hex = '00000000000000000000ffff';
-	$v4mapped_prefix_bin = hex2bin($v4mapped_prefix_hex);
+function get_client_ip() {
+    // Prefixo IPv4-mapped IPv6
+    $v4mapped_prefix_hex = '00000000000000000000ffff';
+    $v4mapped_prefix_bin = hex2bin($v4mapped_prefix_hex);
+    
     $ipaddress = '';
+    
+    // Tentar obter o endereço IP do cliente de várias fontes
     if (isset($_SERVER['HTTP_CLIENT_IP']))
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
     else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
@@ -72,11 +76,19 @@ function get_client_ip(){
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
         $ipaddress = 'UNKNOWN';
-	$addr_bin = inet_pton($ipaddress);
-	if( substr($addr_bin, 0, strlen($v4mapped_prefix_bin)) == $v4mapped_prefix_bin) {
-	$addr_bin = substr($addr_bin, strlen($v4mapped_prefix_bin));
-	}
-    return inet_ntop($addr_bin);
+    
+    // Verificar se o endereço IP é um endereço IPv6
+    if (filter_var($ipaddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+        $addr_bin = inet_pton($ipaddress);
+        
+        // Remover o prefixo IPv4-mapped, se presente
+        if (substr($addr_bin, 0, strlen($v4mapped_prefix_bin)) == $v4mapped_prefix_bin) {
+            $addr_bin = substr($addr_bin, strlen($v4mapped_prefix_bin));
+        }
+        
+        // Converter de binário para formato de apresentação
+        return inet_ntop($addr_bin);
+    }
 }
 
 function acessoSimples($url, &$info = null, $get= array() , $post=array(), $timeout = 10) {
@@ -84,8 +96,6 @@ function acessoSimples($url, &$info = null, $get= array() , $post=array(), $time
 	curl_setopt_array($ch, array(
 		CURLOPT_CONNECTTIMEOUT => $timeout ,
 		CURLOPT_RETURNTRANSFER => 1,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_SSL_VERIFYPEER=> false,
 		CURLOPT_URL => $url,
 		CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'] . " ICPNetwork Votesystem Legacy 2.6"
 	));
@@ -123,6 +133,7 @@ function instalar($db_ip, $db_user, $db_pass, $db_name, $db_data, $l2jruss, $adm
 		array(14, 'GameBytes', 'https://www.gamebytes.net', 'gamebytes.png', 'gamebytes.php', 'sem_id', 'sem_token', 0, 0),
 		array(15, 'L2 Servers', 'https://www.l2servers.com', 'l2servers.png', 'l2servers.php', 'sem_id', 'sem_token', 0, 0),
 		array(16, 'L2 Votes', 'https://www.l2votes.com', 'l2votes.jpg', 'l2votes.php', 'sem_id', 'sem_token', 0, 0)
+		array(17, '4TOP Servers', 'https://top.4teambr.com', '4topmmo.png', '4topmmo.php', 'sem_id', 'sem_token', 0, 0),
 	);
 	if(empty($admins))
 		return respostaDelay($language_72,4000);

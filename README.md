@@ -20,6 +20,7 @@ Este VoteSystem foi desenvolvido com a finalidade de ajudar os SERVIDOSRES de L2
 - http://www.gamesites200.com
 - http://www.topmmo.com.br
 - http://www.top200games.com.br
+- https://top.4teambr.com/
 
 
 ### VoteSystem developed by:        
