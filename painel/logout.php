@@ -1,14 +1,16 @@
 <?php
-##########################################
-#				 Créditos:				 #
-#	Este sistema foi desenvolvido por:	 #
-#		 Ivan Pires (ICPNetworks)		 #
-#		    E estilizado por:			 #
-#		Hugo Felipe (ICPNetworks)		 #
-#	E-mail: contato@icpnetworks.com.br	 #
-#	Site: http://www.icpnetworks.com.br	 #
-##########################################
-	session_start();
-	session_destroy();
+//=======================================================================\\
+//  ## ####### #######                                                   \\
+//  ## ##      ##   ##                                                   \\
+//  ## ##      ## ####  |\  | |¯¯¯ ¯¯|¯¯ \      / |¯¯¯| |¯¯¯| | / |¯¯¯|  \\
+//  ## ##      ##       | \ | |--    |    \    /  | | | | |_| |<   ¯\_   \\
+//  ## ####### ##       |  \| |___   |     \/\/   |___| | |\  | \ |___|  \\
+// --------------------------------------------------------------------- \\
+//       Brazillian Developer / WebSite: http://www.icpfree.com.br       \\
+//                 Email & Skype: ivan1507@gmail.com.br                  \\
+//=======================================================================\\
+session_start();
+session_destroy();
+header("Location: ../");
+exit;
 ?>
-<BODY onLoad="document.location.href='../'">

@@ -1,18 +1,16 @@
 <?php
-##########################################
-#				 Créditos:				 #
-#	Este sistema foi desenvolvido por:	 #
-#		 Ivan Pires (ICPNetworks)		 #
-#		    E estilizado por:			 #
-#		Hugo Felipe (ICPNetworks)		 #
-#	E-mail: contato@icpnetworks.com.br	 #
-#	Site: http://www.icpnetworks.com.br	 #
-##########################################
+//=======================================================================\\
+//  ## ####### #######                                                   \\
+//  ## ##      ##   ##                                                   \\
+//  ## ##      ## ####  |\  | |¯¯¯ ¯¯|¯¯ \      / |¯¯¯| |¯¯¯| | / |¯¯¯|  \\
+//  ## ##      ##       | \ | |--    |    \    /  | | | | |_| |<   ¯\_   \\
+//  ## ####### ##       |  \| |___   |     \/\/   |___| | |\  | \ |___|  \\
+// --------------------------------------------------------------------- \\
+//       Brazillian Developer / WebSite: http://www.icpfree.com.br       \\
+//                 Email & Skype: ivan1507@gmail.com.br                  \\
+//=======================================================================\\
 $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 $prefix = substr($hostname,-2);
-$pagina = file_get_contents('index.php');
-$mensagem = 'http://icpnetworks.com.br';
-$ip = strstr($pagina, $mensagem);
 if($prefix == 'br' or $prefix == 'ao' or $prefix == 'cv' or $prefix == 'gw' or $prefix == 'mz' or $prefix == 'pt' or $prefix == 'st' or $prefix == 'tl'){
 $language_01 = 'Bem vindo';
 $language_02 = 'Sair';
@@ -36,7 +34,7 @@ $language_19 = 'Login: ';
 $language_20 = 'Senha: ';
 $language_21 = 'Entrar';
 $language_22 = 'Você não preencheu todos os campos.';
-$language_23 = 'Todos os campo são obrigatórios!';
+$language_23 = 'Todos os campos são obrigatórios!';
 $language_24 = 'Tente novamente.';
 $language_25 = 'Login ou senha incorretos!';
 $language_26 = 'Você não preencheu o campo login.';
@@ -57,12 +55,12 @@ $language_40 = 'VoteSystem instalado com sucesso!';
 $language_41 = 'Por favor, aguarde ser redirecionado...';
 $language_42 = 'Versão desatualizada!';
 $language_43 = 'Baixe a nova versão:';
-$language_44 = 'Instalação do VoteSystem ICPNetworks 2.0';
+$language_44 = 'Instalação do VoteSystem ICPNetworks 2.7';
 $language_45 = 'IP do banco de dados:';
 $language_46 = 'Usuário do banco de dados:';
 $language_47 = 'Senha do banco de dados:';
 $language_48 = 'Nome do banco de dados:';
-$language_49 = 'Endereço do seu site:';
+$language_49 = 'Tipo de conexão:';
 $language_50 = 'Banners de Voto';
 $language_51 = 'Moedas de voto / Quantidade';
 $language_52 = 'Moeda';
@@ -83,6 +81,9 @@ $language_66 = 'Mostrar votos?';
 $language_67 = 'Sim';
 $language_68 = 'Não';
 $language_69 = 'Erro na entrega do premio, informe o administrador.';
+$language_70 = 'Configure o seu votesystem!';
+$language_71 = 'Login de Admin';
+$language_72 = 'Você precisa preencher uma conta de Admin!';
 }elseif($prefix == 'ar' or $prefix == 'bo' or $prefix == 'cl' or $prefix == 'co' or $prefix == 'cr' or $prefix == 'cu' or $prefix == 'ec' or $prefix == 'sv' or $prefix == 'gt' or $prefix == 'hn' or $prefix == 'mx' or $prefix == 'ni' or $prefix == 'py' or $prefix == 'pa' or $prefix == 'pe' or $prefix == 'pr' or $prefix == 'do' or $prefix == 'uy' or $prefix == 've' or $prefix == 'es'){
 $language_01 = 'Bienvenido';
 $language_02 = 'Salir';
@@ -127,12 +128,12 @@ $language_40 = 'VoteSystem instalado con éxito!';
 $language_41 = 'Por favor, espere ser redirigido...';
 $language_42 = 'Versión obsoleta!';
 $language_43 = 'Descargue la nueva versión:';
-$language_44 = 'Instalación VoteSystem ICPNetworks 2.0';
+$language_44 = 'Instalación VoteSystem ICPNetworks 2.7';
 $language_45 = 'IP de base de datos:';
 $language_46 = 'Login de base de datos:';
 $language_47 = 'Contraseña de base de datos:';
 $language_48 = 'Nombre de base de datos:';
-$language_49 = 'Dirección de su página web:';
+$language_49 = 'Tipo de conexión:';
 $language_50 = 'Banners del Votos';
 $language_51 = 'Monedas votación / Cantidad';
 $language_52 = 'Moneda';
@@ -153,6 +154,9 @@ $language_66 = 'Mostrar votos?';
 $language_67 = 'Sí';
 $language_68 = 'No';
 $language_69 = 'Error en la entrega del premio, informar al administrador del sitio.';
+$language_70 = 'Configura tu sistema de votación!';
+$language_71 = 'Cuenta de Admin';
+$language_72 = '¡Necesitas escribir una cuenta de administrador!';
 }else{
 $language_01 = 'Welcome';
 $language_02 = 'Exit';
@@ -197,12 +201,12 @@ $language_40 = 'VoteSystem successfully installed!';
 $language_41 = 'Please wait to be redirected...';
 $language_42 = 'Outdated version!';
 $language_43 = 'Download the new version:';
-$language_44 = 'Installation VoteSystem ICPNetworks 2.0';
+$language_44 = 'Installation VoteSystem ICPNetworks 2.7';
 $language_45 = 'Database IP:';
 $language_46 = 'Database User:';
 $language_47 = 'Database Password:';
 $language_48 = 'Database name:';
-$language_49 = 'Address of your website:';
+$language_49 = 'Connection type:';
 $language_50 = 'Banners Vote';
 $language_51 = 'Currencies voting / Quantity';
 $language_52 = 'Coin';
@@ -223,6 +227,8 @@ $language_66 = 'Show votes?';
 $language_67 = 'Yes';
 $language_68 = 'No';
 $language_69 = 'Error in the delivery of the prize, inform the board administrator.';
+$language_70 = 'Set up your voting system!';
+$language_71 = 'Admin accounts';
+$language_72 = 'You need to put a Admin account!';
 }
-$version = '2.6';
 ?>

@@ -9,11 +9,20 @@
 //       Brazillian Developer / WebSite: http://www.icpfree.com.br       \\
 //                 Email & Skype: ivan1507@gmail.com.br                  \\
 //=======================================================================\\
-if($mostra_votos == 1){
-	$busca_votos = $conn->prepare("SELECT SUM(votos) AS total FROM icp_votesystem_votos");
-	$busca_votos->execute();
-	$count = $busca_votos->fetch(PDO::FETCH_ASSOC);
-	$t_voto = !empty($count["total"]) ? $count["total"] : 0;
-	echo $language_61." ".$t_voto;
-}
 ?>
+<form class="row six columns" action="javascript:logar();" method="post">
+	<table width="194" border="0">
+		<tr>
+			<td width="43" height="41"><?php echo $language_19; ?></td>
+			<td width="141"><input type="text" name="usuario" maxlength="16" autocomplete="off" id="7"></td>
+		</tr>
+		<tr>
+			<td height="45"><?php echo $language_20; ?></td>
+			<td><input type="password" name="senha" maxlength="16" autocomplete="off" id="8"></td>
+		</tr>
+		<tr>
+			<td height="44">&nbsp;</td>
+			<td><button style="margin-top: -5px;" class="button secondary" id="1"><?php echo $language_21; ?></button></td>
+		</tr>
+	</table>
+</form>
