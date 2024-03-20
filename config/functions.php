@@ -133,7 +133,8 @@ function instalar($db_ip, $db_user, $db_pass, $db_name, $db_data, $l2jruss, $adm
 		array(14, 'GameBytes', 'https://www.gamebytes.net', 'gamebytes.png', 'gamebytes.php', 'sem_id', 'sem_token', 0, 0),
 		array(15, 'L2 Servers', 'https://www.l2servers.com', 'l2servers.png', 'l2servers.php', 'sem_id', 'sem_token', 0, 0),
 		array(16, 'L2 Votes', 'https://www.l2votes.com', 'l2votes.jpg', 'l2votes.php', 'sem_id', 'sem_token', 0, 0),
-		array(17, '4TOP Servers', 'https://top.4teambr.com', '4topmmo.png', '4topmmo.php', 'sem_id', 'sem_token', 0, 0)
+		array(17, '4TOP Servers', 'https://top.4teambr.com', '4topmmo.png', '4topmmo.php', 'sem_id', 'sem_token', 0, 0),
+		array(18, 'L2Rankzone', 'https://l2rankzone.com', 'l2rankzone.jpg', 'l2rankzone.php', 'sem_id', 'sem_token', 0, 0)
 	);
 	if(empty($admins))
 		return respostaDelay($language_72,4000);
